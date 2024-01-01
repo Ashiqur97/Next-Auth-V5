@@ -7,6 +7,8 @@ import {
     CardHeader
   } from "@/components/ui/card";
 
+import { Header } from "@/components/auth/header";
+
 interface CardWrapperProps {
     children: React.ReactNode;
     headerLabel: string;
@@ -24,9 +26,14 @@ export const CardWrapper = ({
 
 }: CardWrapperProps) => {
     return (
-    <Card className="w-[400px] shadow-md">
-        {children}
-    </Card>
+        <Card className="w-[400px] shadow-md">
+        <CardHeader>
+          <Header label={headerLabel} />
+        </CardHeader>
+        <CardContent>
+          {children}
+        </CardContent>
+      </Card>
     );
 };
 
