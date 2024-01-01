@@ -1,8 +1,8 @@
 const LoginForm = () => {
     return ( 
-        <div>
+        <CodeWrapper>
             Login Form!
-        </div>
+        </CodeWrapper>
      );
 }
  
