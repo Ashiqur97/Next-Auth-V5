@@ -1,8 +1,10 @@
+import {CardWrapper} from "./card-wrapper"
+
 const LoginForm = () => {
     return ( 
-        <CodeWrapper>
+        <CardWrapper>
             Login Form!
-        </CodeWrapper>
+        </CardWrapper>
      );
 }
  
