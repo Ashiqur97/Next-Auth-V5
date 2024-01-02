@@ -41,6 +41,12 @@ const LoginForm = () => {
                       <FormField name="email" render={({field}) => (
                         <FormItem>
                           <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input {...field}
+                              type="email"
+                              placeholder="jone.doe@gmail.com"
+                            />
+                            </FormControl>
                         </FormItem>
                       )} />
                    </div>
