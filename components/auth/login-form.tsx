@@ -33,7 +33,19 @@ const LoginForm = () => {
             backButtonHref="/auth/register"
             showSocial
         >
-            Login Form!
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(() => {})}
+                className="space-y-6"
+              >
+                   <div className="space-y-4">
+                      <FormField name="email" render={({field}) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                        </FormItem>
+                      )} />
+                   </div>
+              </form>
+            </Form>
         </CardWrapper>
      );
 }
