@@ -20,6 +20,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { FormError } from "@/components/form-error";
+import { FormSuccess } from "@/components/form-success";
+
 const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -70,6 +73,9 @@ const LoginForm = () => {
               </FormItem>
             )} />
           </div>
+          <FormError message="" />
+          <FormSuccess message=""/>
+
           <Button type="submit" className="w-full">
             Login
             </Button>
