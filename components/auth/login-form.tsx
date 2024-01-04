@@ -1,7 +1,7 @@
 "use client";
 
 import * as z from "zod";
-import { useTransition } from "react";
+import { startTransition, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
@@ -26,7 +26,10 @@ import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/login";
 
 const LoginForm = () => {
-  const [error,setError] = useState("");
+  const [error,setError] = useState<string | undefined>("");
+  const [success,setSuccess] = useState<string | undefined>("");
+  const [isPending,setTransition] = useTransition();
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -36,7 +39,18 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    login(values);
+    setError("");
+    setSuccess(""); 
+
+
+    startTransition(() => {
+    login(values)
+    .then((data) => {
+      setError(data.error);
+      setSuccess(data.success);
+    });
+  });
+
   }
   return (
     <CardWrapper
@@ -76,8 +90,8 @@ const LoginForm = () => {
               </FormItem>
             )} />
           </div>
-          <FormError message="" />
-          <FormSuccess message=""/>
+          <FormError message={error} />
+          <FormSuccess message={success} />
 
           <Button type="submit" className="w-full">
             Login
