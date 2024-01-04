@@ -1,6 +1,7 @@
 "use client";
 
 import * as z from "zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
@@ -22,8 +23,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
+import { login } from "@/actions/login";
 
 const LoginForm = () => {
+  const [error,setError] = useState("");
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -33,7 +36,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values);
+    login(values);
   }
   return (
     <CardWrapper
