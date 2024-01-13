@@ -19,6 +19,8 @@ export const {
           session.user.id = token.sub;
         }
 
+        session.user.customField = "anything"
+
         if(token.role && session.user) {
           session.user.role = token.role as UserRole;
         }
