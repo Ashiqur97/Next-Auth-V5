@@ -3,7 +3,6 @@ import { UserRole } from "@prisma/client";
 
 
 export type ExtendedUser = DefaultSession["user"] & {
-    customField:string;
     role: UserRole;
 };
 
