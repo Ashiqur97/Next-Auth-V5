@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "@/auth.config";
 import {db} from "@/lib/db";
 import { getUserById } from "@/data/user";
+import { UserRole } from "@prisma/client";
 
 
 
@@ -19,7 +20,7 @@ export const {
         }
 
         if(token.role && session.user) {
-          session.user.role = token.role;
+          session.user.role = token.role as UserRole;
         }
 
         return session;
