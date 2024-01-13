@@ -10,7 +10,11 @@ export const {
   signOut,
 } = NextAuth({
   callbacks:{
-    async jwt({token,user,profile}) {
+    async session({session,token}){
+        console.log({sessionToken:token,session})
+        return session
+    },
+    async jwt({token}) {
       console.log({token})
       return token
     }
