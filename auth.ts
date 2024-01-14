@@ -6,7 +6,6 @@ import { getUserById } from "@/data/user";
 import { UserRole } from "@prisma/client";
 
 
-
 export const {
   handlers: { GET, POST },
   auth,
@@ -18,8 +17,6 @@ export const {
         if(token.sub && session.user){
           session.user.id = token.sub;
         }
-
-        session.user.customField = "anything"
 
         if(token.role && session.user) {
           session.user.role = token.role as UserRole;
@@ -43,3 +40,4 @@ export const {
   session:{strategy:"jwt"},
     ...authConfig,
 });
+
